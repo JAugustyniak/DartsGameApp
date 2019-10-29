@@ -11,4 +11,5 @@ import java.util.List;
 public interface PlayerRepository extends CrudRepository<Player, Integer> {
 
     List<Player> findAllByGame(Game game);
+    Player findPlayerById(Integer id);
 }

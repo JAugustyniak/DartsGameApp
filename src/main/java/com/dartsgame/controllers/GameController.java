@@ -7,11 +7,10 @@ import com.dartsgame.services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,8 @@ public class GameController {
 
     @Autowired
     PlayerService playerService;
+
+
 
     @RequestMapping(value = "startGame", method = RequestMethod.GET)
     public String startGame(Model model){
@@ -51,7 +52,7 @@ public class GameController {
     int counter = 0;
 
     @RequestMapping(value = "players/{gameId}", method = RequestMethod.POST)
-    public String players(@ModelAttribute Player player, @PathVariable int gameId){
+    public String players(@ModelAttribute Player player, @PathVariable int gameId, HttpSession request){
         Game g = gameService.findGameById(gameId);
         int max = g.getNumberOfPlayers();
         player.setGame(g);
@@ -61,7 +62,18 @@ public class GameController {
             System.out.println(counter);
             return "players";
         }
-        return "start";
+//        request.setAttribute("listOfPlayers", playerService.findAllByGame(g));
+//        List<Player> test = (List<Player>) request.getAttribute("listOfPlayers");
+
+        return "redirect:/players/" + g.getId() + "/" + playerService.findAllByGame(g).get(0).getId() + "/" + "1";//przekierowanie pierwszego gracza do pierwszej rundy
+    }
+
+    @RequestMapping(value = "players/{gameId}/{playerId}/{throwNumber}", method = RequestMethod.GET)
+    @ResponseBody
+    public String addPoints(@PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer throwNumber, Model model){
+//        model.addAttribute("player", playerService.findPlayerById(playerId));
+        return "abc";
+
     }
 
     @RequestMapping("start")

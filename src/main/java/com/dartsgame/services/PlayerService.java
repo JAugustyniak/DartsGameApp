@@ -21,4 +21,9 @@ public class PlayerService {
     public List<Player> findAllByGame(Game game){
         return playerRepository.findAllByGame(game);
     }
+
+    public Player findPlayerById(Integer id){
+        return playerRepository.findPlayerById(id);
+    }
+
 }

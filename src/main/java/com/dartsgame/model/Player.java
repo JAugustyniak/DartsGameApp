@@ -15,11 +15,13 @@ public class Player {
     @JoinColumn(name = "game_id")
     private Game game;
 
-    public Player(String nickName) {
-        this.nickName = nickName;
+
+    public Player() {
     }
 
-    public Player(){
+    public Player(String nickName, Game game) {
+        this.nickName = nickName;
+        this.game = game;
     }
 
     public int getId() {
