@@ -13,20 +13,14 @@ public class Point {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    private Integer throw1;
-
-    private Integer throw2;
-
-    private Integer throw3;
+    private Integer throwValue;
 
     public Point() {
     }
 
-    public Point(Player player, Integer throw1, Integer throw2, Integer throw3) {
+    public Point(Player player, Integer throwValue) {
         this.player = player;
-        this.throw1 = throw1;
-        this.throw2 = throw2;
-        this.throw3 = throw3;
+        this.throwValue = throwValue;
     }
 
     public int getId() {
@@ -45,27 +39,11 @@ public class Point {
         this.player = player;
     }
 
-    public Integer getThrow1() {
-        return throw1;
+    public Integer getThrowValue() {
+        return throwValue;
     }
 
-    public void setThrow1(Integer throw1) {
-        this.throw1 = throw1;
-    }
-
-    public Integer getThrow2() {
-        return throw2;
-    }
-
-    public void setThrow2(Integer throw2) {
-        this.throw2 = throw2;
-    }
-
-    public Integer getThrow3() {
-        return throw3;
-    }
-
-    public void setThrow3(Integer throw3) {
-        this.throw3 = throw3;
+    public void setThrowValue(Integer throwValue) {
+        this.throwValue = throwValue;
     }
 }
