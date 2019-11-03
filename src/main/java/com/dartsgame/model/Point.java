@@ -1,5 +1,7 @@
 package com.dartsgame.model;
 
+import org.springframework.data.relational.core.sql.In;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,8 @@ public class Point {
     private Player player;
 
     private Integer throwValue;
+
+    private Integer round;
 
     public Point() {
     }
@@ -45,5 +49,18 @@ public class Point {
 
     public void setThrowValue(Integer throwValue) {
         this.throwValue = throwValue;
+    }
+
+    public Integer getRound() {
+        return round;
+    }
+
+    public void setRound(Integer round) {
+        this.round = round;
+    }
+
+    public void setThrowValue(Integer throwValue, Integer round) {
+        this.throwValue = throwValue;
+        this.round = round;
     }
 }

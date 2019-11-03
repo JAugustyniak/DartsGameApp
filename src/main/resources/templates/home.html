@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<p th:text="'Hello Thymeleaf'"></p>
+
+<form th:action="@{/startGame}">
+    <input type="submit" value="Start a game">
+</form>
+
+</body>
+</html>

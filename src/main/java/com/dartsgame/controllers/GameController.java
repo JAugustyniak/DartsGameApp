@@ -29,61 +29,64 @@ public class GameController {
     PointService pointService;
 
     @RequestMapping(value = "startGame", method = RequestMethod.GET)
-    public String startGame(Model model){
+    public String startGame(Model model) {
         model.addAttribute("game", new Game());
         return "numberOfPlayers";
     }
 
     @RequestMapping(value = "startGame", method = RequestMethod.POST)
-    public String startGame(@ModelAttribute Game game){
+    public String startGame(@ModelAttribute Game game) {
         gameService.saveGame(game);
         return "redirect:/" + game.getId();
     }
 
     @RequestMapping(value = "/{gameId}", method = RequestMethod.GET)
-    public String enterNickname(@PathVariable Integer gameId, Model model){
+    public String enterNickname(@PathVariable Integer gameId, Model model) {
 //        model.addAttribute("game", gameService.findGameById(gameId));
         model.addAttribute("player", new Player());
         return "addPlayer";
     }
 
     @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
-    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player) {
+    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
         Game g = gameService.findGameById(gameId);
         player.setGame(g);
         playerService.savePlayer(player);
-        return "redirect:/" + g.getId() + "/" + player.getId();
+        point.setRound(1);
+        return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
     }
 
-    @RequestMapping(value = "/{gameId}/{playerId}", method = RequestMethod.GET)
-    public String addPoints(@PathVariable Integer gameId, @PathVariable Integer playerId, Model model){
+    @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.GET)
+    public String addPoints(@PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
         Player player = playerService.findPlayerById(playerId);
         Point point = new Point();
         point.setPlayer(player);
+        point.setRound(roundId);
         model.addAttribute("point", point);
         return "addPoints";
     }
 
-    @RequestMapping(value = "/{gameId}/{playerId}", method = RequestMethod.POST)
-    public String addPoints(@ModelAttribute("point") Point point, @PathVariable("playerId") Integer playerId, Model model){
+    int numberOfThrows = 0;
+
+    @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
+    public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
         Player player = playerService.findPlayerById(playerId);
         point.setPlayer(player);
         pointService.savePoint(point);
-        model.addAttribute("sum", 301 - pointService.getSumPoints(playerService.findPlayerById(playerId)));
-        return "addPoints";
+        numberOfThrows += 1;
+        int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
+        if (sum == 0) {
+            model.addAttribute("roundId", roundId);
+            model.addAttribute("player", player);
+            return "win";
+        }
+        model.addAttribute("sum", sum);
+        if (numberOfThrows % 3 != 0) {
+            return "addPoints";
+        }
+        int round = roundId + 1;
+        return "redirect:/" + gameId + "/" + playerId + "/" + round;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //    @RequestMapping(value = "players/{gameId}", method = RequestMethod.GET)
