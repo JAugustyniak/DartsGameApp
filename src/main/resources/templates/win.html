@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Win</title>
+    <style>
+        body {
+            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        body {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="'KONIEC GRY'"></h1><br>
+<p th:text="'Wygral: ' + ${player.nickName}"></p>
+<p th:text="'Rund: ' + ${roundId} "></p>
+
+</body>
+</html>

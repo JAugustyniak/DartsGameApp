@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface GameRepository extends CrudRepository<Game, Integer> {
 
     Game findTopById(int id);
+
+
+
 }
