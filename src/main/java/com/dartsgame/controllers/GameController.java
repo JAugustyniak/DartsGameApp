@@ -72,6 +72,7 @@ public class GameController {
     public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
         Player player = playerService.findPlayerById(playerId);
         point.setPlayer(player);
+        point.setRound(roundId);
         pointService.savePoint(point);
         numberOfThrows += 1;
         int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
