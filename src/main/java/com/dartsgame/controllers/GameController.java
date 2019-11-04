@@ -59,8 +59,8 @@ public class GameController {
           return "home/" + g.getId();
         }
         List<Player> listOfPlayers = g.getAllPlayerByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
-        return "redirect:/" + g.getId() + "/" + listOfPlayers.wezpierwszegograczaijegoid + "/" + point.getRound; //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
-        //return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
+        return "redirect:/" + g.getId() + "/" + listOfPlayers.wezpierwszegograczaijegoid + "/" + point.getRound(); //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
+
     }
     //KONIEC ZMIANY
     @RequestMapping(value = "/{gameId}/{playerId}", method = RequestMethod.GET)
