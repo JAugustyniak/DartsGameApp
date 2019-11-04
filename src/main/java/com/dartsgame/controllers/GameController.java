@@ -59,7 +59,9 @@ public class GameController {
           return "home/" + g.getId();
         }
         List<Player> listOfPlayers = playerService.findAllByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
-        return "redirect:/" + g.getId() + "/" + listOfPlayers.wezpierwszegograczaijegoid + "/" + point.getRound(); //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
+        //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
+        return "redirect:/" + g.getId() + "/" + listOfPlayers.get(0).getId() + "/" + point.getRound();
+ 
 
     }
     //KONIEC ZMIANY
