@@ -47,13 +47,32 @@ public class GameController {
         return "addPlayer";
     }
 
+//    @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
+//    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
+//        Game g = gameService.findGameById(gameId);
+//        player.setGame(g);
+//        playerService.savePlayer(player);
+//        point.setRound(1);
+//        return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
+//    }
+
+    int counterAddPlayer = 0;
     @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
     public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
         Game g = gameService.findGameById(gameId);
         player.setGame(g);
         playerService.savePlayer(player);
         point.setRound(1);
-        return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
+        counterAddPlayer += 1;
+        if(counterAddPlayer < g.getNumberOfPlayers()){
+            return "addPlayer";
+        }
+        List<Player> listOfPlayers = playerService.findAllByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
+        //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
+        counterAddPlayer = 0;
+        return "redirect:/" + g.getId() + "/" + listOfPlayers.get(0).getId() + "/" + point.getRound();
+
+
     }
 
     @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.GET)
@@ -66,10 +85,34 @@ public class GameController {
         return "addPoints";
     }
 
-    int numberOfThrows = 0;
+//    int numberOfThrows = 0;
+//
+//    @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
+//    public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
+//        Player player = playerService.findPlayerById(playerId);
+//        point.setPlayer(player);
+//        point.setRound(roundId);
+//        pointService.savePoint(point);
+//        numberOfThrows += 1;
+//        int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
+//        if (sum == 0) {
+//            model.addAttribute("roundId", roundId);
+//            model.addAttribute("player", player);
+//            return "win";
+//        }
+//        model.addAttribute("sum", sum);
+//        if (numberOfThrows % 3 != 0) {
+//            return "addPoints";
+//        }
+//        int round = roundId + 1;
+//        return "redirect:/" + gameId + "/" + playerId + "/" + round;
+//    }
 
+    int numberOfThrows = 0;
+    int counterAddPoints = 0;
     @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
     public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
+        Game g = gameService.findGameById(gameId);
         Player player = playerService.findPlayerById(playerId);
         point.setPlayer(player);
         point.setRound(roundId);
@@ -82,11 +125,26 @@ public class GameController {
             return "win";
         }
         model.addAttribute("sum", sum);
-        if (numberOfThrows % 3 != 0) {
+        if (numberOfThrows < 3) {
             return "addPoints";
         }
-        int round = roundId + 1;
-        return "redirect:/" + gameId + "/" + playerId + "/" + round;
+        List<Player> listOfPlayers = playerService.findAllByGame(g);
+        if(numberOfThrows >= 3){
+            numberOfThrows = 0;
+            counterAddPoints += 1;
+
+
+            //pobracliste zawodnikow
+            //ustawic kolejnego gracza pobierajac licznik jako index listy
+            if(counterAddPoints>=listOfPlayers.size()){
+                int round = roundId + 1;
+                counterAddPoints = 0;
+                return "redirect:/" + gameId + "/" + listOfPlayers.get(0).getId() + "/" + round;
+            }
+            return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
+        }
+        //Przejscie do nastepnej rundy, czyli zaczynamy znow od pierwszego gracza
+        return "abc";
     }
 
 
