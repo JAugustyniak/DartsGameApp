@@ -46,15 +46,23 @@ public class GameController {
         model.addAttribute("player", new Player());
         return "addPlayer";
     }
-
+    //ZMIANA
+    int counterAddPlayer = 0;
     @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
-    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player) {
+    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
         Game g = gameService.findGameById(gameId);
         player.setGame(g);
         playerService.savePlayer(player);
-        return "redirect:/" + g.getId() + "/" + player.getId();
+        point.setRound(1);
+        counterAddPlayer += 1;
+        if(counterAddPlayer < g.getNumberOfPlayers()){
+          return "home/" + g.getId();
+        }
+        List<Player> listOfPlayers = g.getAllPlayerByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
+        return "redirect:/" + g.getId() + "/" + listOfPlayers.wezpierwszegograczaijegoid + "/" + point.getRound; //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
+        //return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
     }
-
+    //KONIEC ZMIANY
     @RequestMapping(value = "/{gameId}/{playerId}", method = RequestMethod.GET)
     public String addPoints(@PathVariable Integer gameId, @PathVariable Integer playerId, Model model){
         Player player = playerService.findPlayerById(playerId);
