@@ -83,12 +83,7 @@ public class GameController {
         return "addPoints";
     }
 
-
-
-
-
-
-int numberOfThrows = 0;
+    int numberOfThrows = 0;
     int counterAddPoints = 0;
     @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
     public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
@@ -108,19 +103,26 @@ int numberOfThrows = 0;
         if (numberOfThrows <= 3) {
             return "addPoints";
         }
+        List<Player> listOfPlayers = playerService.findAllByGame(g);
         if(numberOfThrows > 3){
             numberOfThrows = 0;
             counterAddPoints += 1;
-            List<Player> listOfPlayers = playerService.findAllByGame(g)
+            
+            
             //pobracliste zawodnikow
             //ustawic kolejnego gracza pobierajac licznik jako index listy
-            return "redirect:/" + gameId + "/" + tubedzietennastepnyziomek + "/" + round;
+            return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
         }
         //Przejscie do nastepnej rundy, czyli zaczynamy znow od pierwszego gracza
         int round = roundId + 1;
         counterAddPoints = 0;
-        return "redirect:/" + gameId + "/" + tubedzieznowupierwszygracz + "/" + round;
+        return "redirect:/" + gameId + "/" + listOfPlayers.get(0).getId() + "/" + round;
     }
+
+
+
+
+
 
 
 
