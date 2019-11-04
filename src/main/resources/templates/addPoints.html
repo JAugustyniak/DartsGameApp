@@ -13,13 +13,14 @@
             color: red;
         }
     </style>
+    <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>
 </head>
 <body>
 
 <form method="post" th:object="${point}">
-    Ile rzuciles? <input th:field="*{throwValue}"><br>
-    <input type="button" value="2X"><br>
-    <input type="button" value="3X"><br>
+    Ile rzuciles? <input th:field="*{throwValue}" id="d"><br>
+    <input type="button" value="2X" onclick='multi(2)'><br>
+    <input type="button" value="3X" onclick='multi(3)'><br>
     <input type="submit" value="Submit"><br>
 </form>
 <h3 th:text="'Zostalo jeszcze ' + ${sum}"></h3>
