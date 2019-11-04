@@ -88,7 +88,39 @@ public class GameController {
 
 
 
-
+int numberOfThrows = 0;
+    int counterAddPoints = 0;
+    @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
+    public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
+        Game g = gameService.findGameById(gameId);
+        Player player = playerService.findPlayerById(playerId);
+        point.setPlayer(player);
+        point.setRound(roundId);
+        pointService.savePoint(point);
+        numberOfThrows += 1;
+        int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
+        if (sum == 0) {
+            model.addAttribute("roundId", roundId);
+            model.addAttribute("player", player);
+            return "win";
+        }
+        model.addAttribute("sum", sum);
+        if (numberOfThrows <= 3) {
+            return "addPoints";
+        }
+        if(numberOfThrows > 3){
+            numberOfThrows = 0;
+            counterAddPoints += 1;
+            List<Player> listOfPlayers = playerService.findAllByGame(g)
+            //pobracliste zawodnikow
+            //ustawic kolejnego gracza pobierajac licznik jako index listy
+            return "redirect:/" + gameId + "/" + tubedzietennastepnyziomek + "/" + round;
+        }
+        //Przejscie do nastepnej rundy, czyli zaczynamy znow od pierwszego gracza
+        int round = roundId + 1;
+        counterAddPoints = 0;
+        return "redirect:/" + gameId + "/" + tubedzieznowupierwszygracz + "/" + round;
+    }
 
 
 
