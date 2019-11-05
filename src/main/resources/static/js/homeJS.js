@@ -7,5 +7,13 @@ function multi(val)
 function myFunction() {
     document.getElementById("d").value = 2;
     // alert(new Date());
+}
 
+function add(val){
+    document.getElementById("d").value = val;
+}
+
+function addAndSubmit(val){
+    document.getElementById("d").value = val;
+    document.getElementById("throw_form").submit();
 }

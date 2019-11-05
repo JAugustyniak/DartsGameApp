@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Add points</title>
-    <style>
-        body {
-            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        body {
-            color: red;
-        }
-    </style>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
     <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>
+    <link href="../static/css/addPoints.css" th:href="@{/css/addPoints.css}" rel="stylesheet" />
 </head>
 <body>
 
-<form method="post" th:object="${point}">
-    Ile rzuciles? <input th:field="*{throwValue}" id="d"><br>
-    <input type="button" value="2X" onclick='multi(2)'><br>
-    <input type="button" value="3X" onclick='multi(3)'><br>
-    <input type="submit" value="Submit"><br>
-</form>
-<h3 th:text="'Zostalo jeszcze ' + ${sum}"></h3>
+
+    <form method="post" th:object="${point}" id="throw_form">
+        Ile rzuciles? <input th:field="*{throwValue}" id="d"><br>
+        <input type="button" class="button" value="2" onclick='add(2)'><br>
+        <input type="button" value="3" onclick='add(3)'><br>
+        <input type="button" value="add 3 and submit" onclick='addAndSubmit(3)'><br>
+        <input type="button" value="2X" onclick='multi(2)'><br>
+        <input type="button" value="3X" onclick='multi(3)'><br>
+        <input type="submit" value="Submit"><br>
+    </form>
+    <h3 th:text="'Zostalo jeszcze ' + ${sum}"></h3>
 
 </body>
 </html>
