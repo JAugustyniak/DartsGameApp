@@ -28,6 +28,9 @@
         <td th:text="${w.getName()}" class="textStyle"></td>
         <td th:text="${w.getGame().getId()}" class="textStyle"></td>
         <td th:text="${w.getRound()}" class="textStyle"></td>
+        <td>
+            <a th:href="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}" class="btn btn-danger">Show History</a>
+        </td>
     </tr>
 
 </table>

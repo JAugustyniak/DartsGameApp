@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History of Winner's match</title>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
+</head>
+<body>
+<h1 th:text="'History of the match'" class="textStyle"></h1>
+<table class="table">
+    <tr>
+        <td th:text="'NickName'" class="textStyle"></td>
+        <td th:text="'Round'" class="textStyle"></td>
+        <td th:text="'ThrowNumber'" class="textStyle"></td>
+        <td th:text="'ThrowValue'" class="textStyle"></td>
+    </tr>
+    <tr th:block th:each="h : ${historyOfWinnerMatch}" class="textStyle">
+        <td th:text="${h.getPlayer().getNickName()}" class="textStyle"></td>
+        <td th:text="${h.getRound()}" class="textStyle"></td>
+        <td th:text="${h.getThrowNumber()}" class="textStyle"></td>
+        <td th:text="${h.getThrowValue()}" class="textStyle"></td>
+    </tr>
+
+</table>
+<form th:action="@{/listOfWinners}">
+    <input type="submit" value="Show All Winners">
+</form>
+</body>
+</html>
