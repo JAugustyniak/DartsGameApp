@@ -178,6 +178,15 @@ public class GameController {
         return "NLastListWinners";
     }
 
+    @RequestMapping(value = "/showHistory/{gameId}", method = RequestMethod.GET)
+    public String showHistory(@PathVariable Integer gameId, Model model){
+        Game g = gameService.findGameById(gameId);
+        model.addAttribute("historyOfWinnerMatch", pointService.getcostam(g));
+        return "showHistoryOfWinnerMatch";
+//        pointService.getcostam(g).get(0).getPlayer().getNickName();
+
+    }
+
 
 
 

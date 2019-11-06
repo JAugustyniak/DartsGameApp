@@ -1,6 +1,7 @@
 package com.dartsgame.services;
 
 
+import com.dartsgame.model.Game;
 import com.dartsgame.model.Player;
 import com.dartsgame.model.Point;
 import com.dartsgame.repositories.PointRepository;
@@ -25,5 +26,9 @@ public class PointService {
 
     public Integer getSumPoints(Player player){
         return pointRepository.getSumPoints(player);
+    }
+
+    public List<Point> getcostam(Game game){
+        return pointRepository.getcostam(game);
     }
 }

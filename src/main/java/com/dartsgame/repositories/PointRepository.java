@@ -1,5 +1,6 @@
 package com.dartsgame.repositories;
 
+import com.dartsgame.model.Game;
 import com.dartsgame.model.Player;
 import com.dartsgame.model.Point;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,11 @@ public interface PointRepository extends CrudRepository<Point, Integer> {
 
     @Query("Select sum(p.throwValue) from Point p where p.player = ?1")
     Integer getSumPoints(Player player);
+
+    @Query("SELECT p FROM Point p LEFT JOIN  p.player pl on p.player=pl.id where pl.game=?1")
+    List<Point> getcostam(Game game);
+
+
 
 
 
