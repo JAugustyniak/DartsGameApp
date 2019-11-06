@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -118,8 +120,9 @@ public class GameController {
         Player player = playerService.findPlayerById(playerId);
         point.setPlayer(player);
         point.setRound(roundId);
-        pointService.savePoint(point);
         numberOfThrows += 1;
+        point.setThrowNumber(numberOfThrows);
+        pointService.savePoint(point);
         int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
         if (sum == 0) {
             model.addAttribute("roundId", roundId);
@@ -156,12 +159,26 @@ public class GameController {
         return "abc";
     }
 
+
     @RequestMapping(value = "/listOfWinners", method = RequestMethod.GET)
     public String showWinners(Model model){
         List<Winner> winners = winnerService.getAllWinners();
         model.addAttribute("winners", winners);
         return "listOfWinners";
     }
+
+    @RequestMapping(value = "/listOfWinners", method = RequestMethod.POST)
+    public String processShowWinners(@RequestParam Integer numberOfWinners ){
+        return "redirect:/listOfWinners/" + numberOfWinners;
+    }
+
+    @RequestMapping(value = "/listOfWinners/{numberOfWinners}", method = RequestMethod.GET)
+    public String showWinnersN(@PathVariable Integer numberOfWinners, Model model){
+        model.addAttribute("NLastWinners", winnerService.getNumberOfLastWinners(numberOfWinners));
+        return "NLastListWinners";
+    }
+
+
 
 
 //    @RequestMapping(value = "players/{gameId}", method = RequestMethod.GET)
