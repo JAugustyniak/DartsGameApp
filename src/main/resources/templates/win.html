@@ -11,6 +11,11 @@
 <h2 th:text="'END OF THE GAME'" class="textStyle"></h2>
 <h1 th:text="'Winner: ' + ${player.nickName}" class="textStyle"></h1>
 <p th:text="'Round: ' + ${roundId} " class="textStyle"></p>
+<br><br><br>
+
+<form th:action="@{/listOfWinners}">
+    <input type="submit" value="Show winners">
+</form>
 
 </body>
 </html>

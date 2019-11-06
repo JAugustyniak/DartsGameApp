@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List of winners</title>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
 </head>
 <body>
+<h1 th:text="'List of winners'" class="textStyle"></h1>
+<table class="table">
+    <tr>
+        <td th:text="'Winner name'" class="textStyle"></td>
+        <td th:text="'Game id'" class="textStyle"></td>
+        <td th:text="'Round'" class="textStyle"></td>
+    </tr>
+    <tr th:block th:each="w : ${winners}" class="textStyle">
+        <td th:text="${w.getName()}" class="textStyle"></td>
+        <td th:text="${w.getGame().getId()}" class="textStyle"></td>
+        <td th:text="${w.getRound()}" class="textStyle"></td>
+    </tr>
+
+</table>
 
 </body>
 </html>

@@ -3,17 +3,16 @@ package com.dartsgame.controllers;
 import com.dartsgame.model.Game;
 import com.dartsgame.model.Player;
 import com.dartsgame.model.Point;
+import com.dartsgame.model.Winner;
 import com.dartsgame.services.GameService;
 import com.dartsgame.services.PlayerService;
 import com.dartsgame.services.PointService;
+import com.dartsgame.services.WinnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -27,6 +26,9 @@ public class GameController {
 
     @Autowired
     PointService pointService;
+
+    @Autowired
+    WinnerService winnerService;
 
     @RequestMapping(value = "startGame", method = RequestMethod.GET)
     public String startGame(Model model) {
@@ -122,6 +124,13 @@ public class GameController {
         if (sum == 0) {
             model.addAttribute("roundId", roundId);
             model.addAttribute("player", player);
+            Winner winner = new Winner();
+            winner.setGame(g);
+            winner.setPlayer(player);
+            winner.setRound(roundId);
+            String winnerName = player.getNickName();
+            winner.setName(winnerName);
+            winnerService.saveWinner(winner);
             return "win";
         }
         model.addAttribute("sum", sum);
@@ -145,6 +154,13 @@ public class GameController {
         }
         //Przejscie do nastepnej rundy, czyli zaczynamy znow od pierwszego gracza
         return "abc";
+    }
+
+    @RequestMapping(value = "/listOfWinners", method = RequestMethod.GET)
+    public String showWinners(Model model){
+        List<Winner> winners = winnerService.getAllWinners();
+        model.addAttribute("winners", winners);
+        return "listOfWinners";
     }
 
 
