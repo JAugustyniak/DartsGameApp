@@ -3,27 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Add points</title>
-    <style>
-        body {
-            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        body {
-            color: red;
-        }
-    </style>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
     <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>
+    <link href="../static/css/addPoints.css" th:href="@{/css/addPoints.css}" rel="stylesheet" />
 </head>
 <body>
+<br><br><br><br><br>
 
-<form method="post" th:object="${point}">
-    Ile rzuciles? <input th:field="*{throwValue}" id="d"><br>
-    <input type="button" value="2X" onclick='multi(2)'><br>
-    <input type="button" value="3X" onclick='multi(3)'><br>
-    <input type="submit" value="Submit"><br>
-</form>
-<h3 th:text="'Zostalo jeszcze ' + ${sum}"></h3>
+
+    <form method="post" th:object="${point}" id="throw_form">
+        <h2 th:text="'How much did you throw?'" class="textStyle"></h2>
+        <input th:field="*{throwValue}" id="d"><br><br>
+
+        <input type="button" class="button" value="1" onclick='add(1)'>
+        <input type="button" class="button" value="2" onclick='add(2)'>
+        <input type="button" class="button" value="3" onclick='add(3)'>
+        <input type="button" class="button" value="4" onclick='add(4)'>
+        <input type="button" class="button" value="5" onclick='add(5)'>
+        <input type="button" class="button" value="6" onclick='add(6)'>
+        <input type="button" class="button" value="7" onclick='add(7)'>
+        <input type="button" class="button" value="8" onclick='add(8)'>
+        <input type="button" class="button" value="9" onclick='add(9)'>
+        <input type="button" class="button" value="10" onclick='add(10)'><br>
+        <input type="button" class="button" value="11" onclick='add(11)'>
+        <input type="button" class="button" value="12" onclick='add(12)'>
+        <input type="button" class="button" value="13" onclick='add(13)'>
+        <input type="button" class="button" value="14" onclick='add(14)'>
+        <input type="button" class="button" value="15" onclick='add(15)'>
+        <input type="button" class="button" value="16" onclick='add(16)'>
+        <input type="button" class="button" value="17" onclick='add(17)'>
+        <input type="button" class="button" value="18" onclick='add(18)'>
+        <input type="button" class="button" value="19" onclick='add(19)'>
+        <input type="button" class="button" value="20" onclick='add(20)'><br><br>
+
+
+<!--
+        <input type="button" value="3" onclick='add(3)'><br>
+-->
+<!--
+        <input type="button" value="add 3 and submit" onclick='addAndSubmit(3)'><br>
+-->
+        <input type="button" value="2X" onclick='multi(2)' class="button">
+        <input type="button" value="3X" onclick='multi(3)' class="button"><br>
+        <input type="submit" value="Submit" class="button"><br>
+    </form>
+    <h3 th:text="'Left: ' + ${sum}"></h3>
 
 </body>
 </html>

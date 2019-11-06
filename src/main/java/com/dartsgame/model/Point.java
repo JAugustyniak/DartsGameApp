@@ -3,6 +3,7 @@ package com.dartsgame.model;
 import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Point {
@@ -15,6 +16,7 @@ public class Point {
     @JoinColumn(name = "player_id")
     private Player player;
 
+    @NotNull
     private Integer throwValue;
 
     private Integer round;

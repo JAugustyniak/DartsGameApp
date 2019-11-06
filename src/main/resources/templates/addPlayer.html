@@ -3,21 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Add player</title>
-    <style>
-        body {
-            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        body {
-            color: red;
-        }
-    </style>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
 </head>
 <body>
-<form method="post" th:object="${player}">
-    Podaj nickname: <input th:field="*{nickName}"><br>
-    <input type="submit" value="Submit">
+<form method="post" th:object="${player}"><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <h2 th:text="'Nickname:'" class="textStyle"></h2>
+    <input th:field="*{nickName}"><br>
+    <input type="submit" value="Submit" class="buttonStyle">
 </form>
 </body>
 </html>

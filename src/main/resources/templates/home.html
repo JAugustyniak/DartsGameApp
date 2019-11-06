@@ -3,26 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <style>
-        body {
-            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        body {
-            color: red;
-        }
-
-    </style>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
 <!--    <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>-->
 </head>
 <body>
 
-<p th:text="'Hello Thymeleaf'"></p>
-
 <form th:action="@{/startGame}">
-    <input type="submit" value="Start a game">
+    <input type="submit" value="Start a game" class="buttonStyle">
 </form>
 
 </body>

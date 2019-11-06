@@ -1,0 +1,46 @@
+body {
+    background-image: url("https://t4.ftcdn.net/jpg/02/93/68/11/240_F_293681146_KOtXttqymJ5wvGtr7O4BFexVwHK60ZMA.jpg");
+    /*
+        background-image: url("https://c4.wallpaperflare.com/wallpaper/350/690/357/black-and-white-board-bullseye-center-wallpaper-preview.jpg");
+        background-image: url("https://www.larutadelsorigens.cat/wallpic/full/147-1471483_dart-wallpaper-dart-board-backboard.jpg");
+        background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
+        */
+    /*
+    filter: brightness(50%);
+    */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    color: red;
+    text-align: center;
+}
+
+.buttonStyle {
+    background-color: red;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    border: 4px white;
+}
+
+.textStyle {
+    color: red;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 20px;
+}

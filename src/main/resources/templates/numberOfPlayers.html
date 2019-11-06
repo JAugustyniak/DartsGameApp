@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Number of players</title>
-    <style>
-        body {
-            background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        body {
-            color: red;
-        }
-    </style>
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
+    <link href="../static/css/addPoints.css" th:href="@{/css/addPoints.css}" rel="stylesheet" />
+
 </head>
 <body>
-<h2 th:text="'Fill the form'"></h2>
+<br><br><br><br><br><br><br><br>
+
+<h1 th:text="'Fill the form'" class="textStyle"></h1>
 <form method="post" th:object="${game}">
-    Number of players: <input th:field="*{numberOfPlayers}"><br>
-    <input type="submit" value="Submit">
+    <h2 th:text="'Number of players:'" class="textStyle"></h2>
+    <input th:field="*{numberOfPlayers}"><br>
+    <input type="submit" value="Submit" class="buttonStyle">
 </form>
 
 </body>
