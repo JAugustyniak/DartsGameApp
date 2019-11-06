@@ -19,14 +19,18 @@ public class Point {
     @NotNull
     private Integer throwValue;
 
+    private Integer throwNumber;
+
     private Integer round;
 
     public Point() {
     }
 
-    public Point(Player player, Integer throwValue) {
+    public Point(Player player, @NotNull Integer throwValue, Integer throwNumber, Integer round) {
         this.player = player;
         this.throwValue = throwValue;
+        this.throwNumber = throwNumber;
+        this.round = round;
     }
 
     public int getId() {
@@ -53,16 +57,19 @@ public class Point {
         this.throwValue = throwValue;
     }
 
+    public Integer getThrowNumber() {
+        return throwNumber;
+    }
+
+    public void setThrowNumber(Integer throwNumber) {
+        this.throwNumber = throwNumber;
+    }
+
     public Integer getRound() {
         return round;
     }
 
     public void setRound(Integer round) {
-        this.round = round;
-    }
-
-    public void setThrowValue(Integer throwValue, Integer round) {
-        this.throwValue = throwValue;
         this.round = round;
     }
 }

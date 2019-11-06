@@ -1,22 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List of winners</title>
+    <title>N Last Winners</title>
     <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
 </head>
 <body>
-<form method="post">
-    Choose the number of recent winners:
-    <select name="numberOfWinners">
-        <option value="1">1</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-    </select>
-    <input type="submit" value="Submit">
-</form>
-
 <h1 th:text="'List of winners'" class="textStyle"></h1>
 <table class="table">
     <tr>
@@ -24,7 +14,7 @@
         <td th:text="'Game id'" class="textStyle"></td>
         <td th:text="'Round'" class="textStyle"></td>
     </tr>
-    <tr th:block th:each="w : ${winners}" class="textStyle">
+    <tr th:block th:each="w : ${NLastWinners}" class="textStyle">
         <td th:text="${w.getName()}" class="textStyle"></td>
         <td th:text="${w.getGame().getId()}" class="textStyle"></td>
         <td th:text="${w.getRound()}" class="textStyle"></td>
@@ -32,5 +22,8 @@
 
 </table>
 
+<form th:action="@{/listOfWinners}">
+    <input type="submit" value="Show All Winners">
+</form>
 </body>
 </html>

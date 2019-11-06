@@ -21,4 +21,24 @@ public class WinnerService {
         return winnerRepository.findAllBy();
     }
 
+    public List<Winner> getNumberOfLastWinners(Integer number){
+        if(number==1){
+
+            return winnerRepository.findTop1ByOrderByIdDesc();
+        }
+        else if(number==5){
+
+            return winnerRepository.findTop5ByOrderByIdDesc();
+
+        }else if(number==10){
+
+            return winnerRepository.findTop10ByOrderByIdDesc();
+        }
+        else {
+
+            return winnerRepository.findTop15ByOrderByIdDesc();
+        }
+
+    }
+
 }
