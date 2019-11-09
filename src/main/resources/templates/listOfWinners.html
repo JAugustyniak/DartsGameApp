@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>List of winners</title>
     <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
+    <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
 </head>
 <body>
 <form method="post">
@@ -14,7 +15,7 @@
         <option value="10">10</option>
         <option value="15">15</option>
     </select>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" class="submit_button">
 </form>
 
 <h1 th:text="'List of winners'" class="textStyle"></h1>
@@ -23,14 +24,21 @@
         <td th:text="'Winner name'" class="textStyle"></td>
         <td th:text="'Game id'" class="textStyle"></td>
         <td th:text="'Round'" class="textStyle"></td>
+        <td th:text="'History of Match'" class="textStyle"></td>
     </tr>
     <tr th:block th:each="w : ${winners}" class="textStyle">
         <td th:text="${w.getName()}" class="textStyle"></td>
         <td th:text="${w.getGame().getId()}" class="textStyle"></td>
         <td th:text="${w.getRound()}" class="textStyle"></td>
+<!--        <td>-->
+<!--            <a th:href="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}" class="btn btn-danger">Show History</a>-->
+<!--        </td>-->
         <td>
-            <a th:href="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}" class="btn btn-danger">Show History</a>
+            <form th:action="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}">
+                <input type="submit" value="Show" class="submit_button">
+            </form>
         </td>
+
     </tr>
 
 </table>
