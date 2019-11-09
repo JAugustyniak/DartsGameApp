@@ -60,20 +60,23 @@ public class GameController {
 //        return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
 //    }
 
-    int counterAddPlayer = 0;
+//    int counterAddPlayer = 0;
     @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
     public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
         Game g = gameService.findGameById(gameId);
         player.setGame(g);
         playerService.savePlayer(player);
         point.setRound(1);
-        counterAddPlayer += 1;
-        if(counterAddPlayer < g.getNumberOfPlayers()){
+//        counterAddPlayer += 1;
+        if(playerService.findAllByGame(g).size()<g.getNumberOfPlayers()){
             return "addPlayer";
         }
+//        if(counterAddPlayer < g.getNumberOfPlayers()){
+//
+//        }
         List<Player> listOfPlayers = playerService.findAllByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
         //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
-        counterAddPlayer = 0;
+//        counterAddPlayer = 0;
         return "redirect:/" + g.getId() + "/" + listOfPlayers.get(0).getId() + "/" + point.getRound();
 
 
