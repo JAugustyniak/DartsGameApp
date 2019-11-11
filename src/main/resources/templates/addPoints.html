@@ -8,7 +8,16 @@
     <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
 </head>
 <body>
-<br><br><br><br><br>
+<br><br>
+
+<p th:text="'Player: '"></p>
+<p th:text="${playerName}"></p>
+
+<p th:text="'Number of round: '"></p>
+<p th:text="${point.getRound()}"></p>
+<p th:text="'Number of throw: '" ></p>
+<p th:if="${throwNumber==null}" th:text="'1'"></p>
+<p th:text="${throwNumber}"></p>
 
 
     <form method="post" th:object="${point}" id="throw_form">
@@ -47,7 +56,8 @@
         <input type="button" value="3X" onclick='multi(3)' class="button"><br>
         <input type="submit" value="Submit" class="button"><br>
     </form>
-    <h3 th:text="'Left: ' + ${sum}"></h3>
-
+    <p th:text="'Left:'"></p>
+    <p th:if="${sum==null}" th:text="301"></p>
+    <p th:text="${sum}"></p>
 </body>
 </html>

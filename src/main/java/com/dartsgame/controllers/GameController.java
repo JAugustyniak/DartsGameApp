@@ -89,6 +89,7 @@ public class GameController {
         point.setPlayer(player);
         point.setRound(roundId);
         model.addAttribute("point", point);
+        model.addAttribute("playerName", player.getNickName());
         return "addPoints";
     }
 
@@ -115,6 +116,7 @@ public class GameController {
 //        return "redirect:/" + gameId + "/" + playerId + "/" + round;
 //    }
 
+
     int numberOfThrows = 0;
     int counterAddPoints = 0;
     @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
@@ -125,6 +127,9 @@ public class GameController {
         point.setRound(roundId);
         numberOfThrows += 1;
         point.setThrowNumber(numberOfThrows);
+        model.addAttribute("throwNumber", numberOfThrows + 1);
+        String name = playerService.findPlayerById(playerId).getNickName();
+        model.addAttribute("playerName", name);
         pointService.savePoint(point);
         int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
         if (sum == 0) {
@@ -139,6 +144,7 @@ public class GameController {
             winnerService.saveWinner(winner);
             return "win";
         }
+
         model.addAttribute("sum", sum);
         if (numberOfThrows < 3) {
             return "addPoints";
