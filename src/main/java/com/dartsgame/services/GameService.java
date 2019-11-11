@@ -16,7 +16,7 @@ public class GameService{
     }
 
     public Game findGameById(int id){
-        return gameRepository.findTopById(id);
+        return gameRepository.findTopByIdOrderByIdAsc(id);
     }
 }
 

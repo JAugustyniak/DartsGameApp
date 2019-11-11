@@ -1,0 +1,22 @@
+.winnersTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.winnersTable td, #winners th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.winnersTable tr:nth-child(even){background-color: #f2f2f2;}
+
+.winnersTable tr:hover {background-color: #ddd;}
+
+.winnersTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
