@@ -14,32 +14,19 @@
 .button:hover {background-color: #ffcc5c;
     color: white;}
 
-.buttonStyle {
-    background-color: red;
+.button_submit {
+    background-color: blue;
+    border: none;
     color: white;
     padding: 16px 32px;
     text-align: center;
     font-size: 16px;
     margin: 4px 2px;
-    opacity: 0.6;
     transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 8px;
-    /*position: absolute;*/
-    top: 45%;
-    left: 50%;
-    /*transform: translate(-50%, -50%);*/
-    /*-ms-transform: translate(-50%, -50%);*/
-    border: 4px white;
+    width: 4%;
+}
 
 
-}
-.button:hover{
-    background-color: #ffcc5c;
-    color: white;
-}
 
 #winnersHome{
     background-color: red;
@@ -62,30 +49,4 @@
     border: 4px white;
 }
 
-.submit_button {
-    background-color: red;
-    color: white;
-    padding: 8px 13px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 8px;
-    border: 4px white;
 
-
-    /*background-color: red;*/
-    /*border: none;*/
-    /*color: white;*/
-    /*padding: 8px 13px;*/
-    /*text-align: center;*/
-    /*text-decoration: none;*/
-    /*display: inline-block;*/
-    /*font-size: 12px;*/
-    /*margin: 4px 2px;*/
-    /*cursor: pointer;*/
-}
