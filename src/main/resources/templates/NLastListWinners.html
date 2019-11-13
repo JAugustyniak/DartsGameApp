@@ -20,21 +20,15 @@
         <td th:text="${w.getName()}" class="textStyle"></td>
         <td th:text="${w.getGame().getId()}" class="textStyle"></td>
         <td th:text="${w.getRound()}" class="textStyle"></td>
-
-<!--        <td>-->
-<!--            <a th:href="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}" class="btn btn-danger">Show History</a>-->
-<!--        </td>-->
         <td>
             <form th:action="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}">
-                <input type="submit" value="Show" class="button">
+                <input type="submit" value="Show" class="button_little">
             </form>
         </td>
     </tr>
-
 </table>
-
 <form th:action="@{/listOfWinners}">
-    <input type="submit" value="Show All Winners" class="button">
+    <input type="submit" value="Show All Winners" class="button_submit">
 </form>
 </body>
 </html>

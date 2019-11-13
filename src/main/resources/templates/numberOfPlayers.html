@@ -10,13 +10,11 @@
 </head>
 <body>
 <br><br><br><br><br><br><br><br>
-
 <h1 th:text="'Fill the form'" class="textStyle"></h1>
 <form method="post" th:object="${game}">
     <h2 th:text="'Number of players:'" class="textStyle"></h2>
     <input type="number" min="1" th:field="*{numberOfPlayers}" placeholder="Min 1"><br>
     <input type="submit" value="Submit" class="button">
 </form>
-
 </body>
 </html>

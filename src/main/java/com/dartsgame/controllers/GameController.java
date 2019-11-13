@@ -11,12 +11,8 @@ import com.dartsgame.services.WinnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -48,39 +44,22 @@ public class GameController {
 
     @RequestMapping(value = "/{gameId}", method = RequestMethod.GET)
     public String enterNickname(@PathVariable Integer gameId, Model model) {
-//        model.addAttribute("game", gameService.findGameById(gameId));
         model.addAttribute("player", new Player());
         return "addPlayer";
     }
 
-//    @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
-//    public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
-//        Game g = gameService.findGameById(gameId);
-//        player.setGame(g);
-//        playerService.savePlayer(player);
-//        point.setRound(1);
-//        return "redirect:/" + g.getId() + "/" + player.getId() + "/" + point.getRound();
-//    }
-
-    //    int counterAddPlayer = 0;
     @RequestMapping(value = "/{gameId}", method = RequestMethod.POST)
     public String processEnterNickname(@PathVariable Integer gameId, @ModelAttribute Player player, @ModelAttribute Point point) {
         Game g = gameService.findGameById(gameId);
         player.setGame(g);
         playerService.savePlayer(player);
         point.setRound(1);
-//        counterAddPlayer += 1;
         if (playerService.findAllByGame(g).size() < g.getNumberOfPlayers()) {
             return "addPlayer";
         }
-//        if(counterAddPlayer < g.getNumberOfPlayers()){
-//
-//        }
-        List<Player> listOfPlayers = playerService.findAllByGame(g); // TUTAJ TRZEBA POBRAC LISTE GRACZY
-        //TUTAJ MUSI POBRAC ID PIERWSZEGO GRACZA Z LISTY
-//        counterAddPlayer = 0;
-        return "redirect:/" + g.getId() + "/" + listOfPlayers.get(0).getId() + "/" + point.getRound();
 
+        List<Player> listOfPlayers = playerService.findAllByGame(g);
+        return "redirect:/" + g.getId() + "/" + listOfPlayers.get(0).getId() + "/" + point.getRound();
 
     }
 
@@ -92,37 +71,13 @@ public class GameController {
         point.setRound(roundId);
         model.addAttribute("point", point);
         model.addAttribute("playerName", player.getNickName());
-        if(roundId > 1){
+        if (roundId > 1) {
             int sum = 301 - pointService.getSumPoints(player);
             model.addAttribute("sum", sum);
         }
 
         return "addPoints";
     }
-
-//    int numberOfThrows = 0;
-//
-//    @RequestMapping(value = "/{gameId}/{playerId}/{roundId}", method = RequestMethod.POST)
-//    public String addPoints(@ModelAttribute Point point, @PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer roundId, Model model) {
-//        Player player = playerService.findPlayerById(playerId);
-//        point.setPlayer(player);
-//        point.setRound(roundId);
-//        pointService.savePoint(point);
-//        numberOfThrows += 1;
-//        int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
-//        if (sum == 0) {
-//            model.addAttribute("roundId", roundId);
-//            model.addAttribute("player", player);
-//            return "win";
-//        }
-//        model.addAttribute("sum", sum);
-//        if (numberOfThrows % 3 != 0) {
-//            return "addPoints";
-//        }
-//        int round = roundId + 1;
-//        return "redirect:/" + gameId + "/" + playerId + "/" + round;
-//    }
-
 
     int numberOfThrows = 0;
     int counterAddPoints = 0;
@@ -141,6 +96,14 @@ public class GameController {
         pointService.savePoint(point);
         int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
 
+        List<Player> listOfPlayers = playerService.findAllByGame(g);
+        if(0 > sum){
+            point.setThrowValue(0);
+            pointService.savePoint(point);
+            numberOfThrows = 0;
+            counterAddPoints += 1;
+            return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
+        }
 
         if (sum == 0) {
             model.addAttribute("roundId", roundId);
@@ -160,13 +123,10 @@ public class GameController {
             return "addPoints";
         }
 
-        List<Player> listOfPlayers = playerService.findAllByGame(g);
-        if (numberOfThrows >= 3 /*|| (pointService.getSumPoints(playerService.findPlayerById(playerId)) > sum)*/) {
+
+        if (numberOfThrows >= 3) {
             numberOfThrows = 0;
             counterAddPoints += 1;
-
-            //pobracliste zawodnikow
-            //ustawic kolejnego gracza pobierajac licznik jako index listy
             if (counterAddPoints >= listOfPlayers.size()) {
                 int round = roundId + 1;
                 counterAddPoints = 0;
@@ -174,7 +134,6 @@ public class GameController {
             }
             return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
         }
-        //Przejscie do nastepnej rundy, czyli zaczynamy znow od pierwszego gracza
         return "abc";
     }
 
@@ -199,60 +158,9 @@ public class GameController {
     @RequestMapping(value = "/showHistory/{gameId}", method = RequestMethod.GET)
     public String showHistory(@PathVariable Integer gameId, Model model) {
         Game g = gameService.findGameById(gameId);
-        model.addAttribute("historyOfWinnerMatch", pointService.getcostam(g));
+        model.addAttribute("historyOfWinnerMatch", pointService.getPointByGameId(g));
         return "showHistoryOfWinnerMatch";
-//        pointService.getcostam(g).get(0).getPlayer().getNickName();
 
     }
 
-
-//    @RequestMapping(value = "players/{gameId}", method = RequestMethod.GET)
-//    public String players(@PathVariable int gameId,Model model){
-//        Game g = gameService.findGameById(gameId);
-//        model.addAttribute("player", new Player());
-//        model.addAttribute("game", g);
-///*        List<String> listOfPlayers = new ArrayList<>();
-//        for(int i = 1; i <= g.getNumberOfPlayers(); i++) {
-//            listOfPlayers.add("Player " + i);
-//        }*/
-//        return "players";
-//    }
-//
-//    int counter = 0;
-//
-//    @RequestMapping(value = "players/{gameId}", method = RequestMethod.POST)
-//    public String players(@ModelAttribute Player player, @PathVariable int gameId, HttpSession request){
-//        Game g = gameService.findGameById(gameId);
-//        int max = g.getNumberOfPlayers();
-//        player.setGame(g);
-//        playerService.savePlayer(player);
-//        counter += 1;
-//        if (counter!=max) {
-//            System.out.println(counter);
-//            return "players";
-//        }
-////        request.setAttribute("listOfPlayers", playerService.findAllByGame(g));
-////        List<Player> test = (List<Player>) request.getAttribute("listOfPlayers");
-//
-//        return "redirect:/players/" + g.getId() + "/" + playerService.findAllByGame(g).get(0).getId() + "/" + "1";//przekierowanie pierwszego gracza do pierwszej rundy
-//    }
-//
-//    @RequestMapping(value = "players/{gameId}/{playerId}/{throwNumber}", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String addPoints(@PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer throwNumber, Model model){
-////        model.addAttribute("player", playerService.findPlayerById(playerId));
-//        return "abc";
-//
-//    }
-//
-//    @RequestMapping("start")
-//    public String start(){
-//        return "start";
-//    }
-//
-//    @ModelAttribute("team")
-//    public List<Player> getTeam(){
-//        Game g = gameService.findGameById(1);   //póki co na sztywno id=1
-//        return playerService.findAllByGame(g);
-//    }
 }

@@ -11,22 +11,14 @@ import java.util.List;
 
 @Repository
 public interface PointRepository extends CrudRepository<Point, Integer> {
-//
-//    @Query(value = "Select * from points where player_id in (Select id from player where game_id=?1)", nativeQuery = true)
-
-//    @Query(value = "Select p from Point p where p.player in (Select pl.id from  where pl.game_id=?1)")
-//    List<Point> getByGameID(Integer gameId);
-
-
-//    @Query("Select pl from Player ")
 
     List<Point> findAllByPlayerId(Integer id);
 
     @Query("Select sum(p.throwValue) from Point p where p.player = ?1")
     Integer getSumPoints(Player player);
 
-    @Query("SELECT p FROM Point p LEFT JOIN  p.player pl on p.player=pl.id where pl.game=?1")
-    List<Point> getcostam(Game game);
+    @Query("SELECT p FROM Point p LEFT JOIN  p.player pl on p.player=pl.id where pl.game=?1 order by p.round, p.player.id, p.throwNumber asc")
+    List<Point> getPointByGameIdOrOrderByRoundAndId(Game game);
 
 
 

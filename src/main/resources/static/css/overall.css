@@ -1,19 +1,10 @@
 body {
-    /*
-    background-image: url("https://img2.goodfon.com/original/1600x1200/5/99/darts-drotik-cherno-belyy.jpg");
-    */
     background-image: url("https://blog.playo.co/wp-content/uploads/2017/03/dart-board.jpg");
-
-    /*
-    background-image: url("https://t4.ftcdn.net/jpg/02/93/68/11/240_F_293681146_KOtXttqymJ5wvGtr7O4BFexVwHK60ZMA.jpg");
-    */
-
     background-repeat: no-repeat;
     background-size: cover;
     color: red;
     text-align: center;
 }
-
 
 .textStyle {
     color: red;

@@ -28,7 +28,7 @@ public class PointService {
         return pointRepository.getSumPoints(player);
     }
 
-    public List<Point> getcostam(Game game){
-        return pointRepository.getcostam(game);
+    public List<Point> getPointByGameId(Game game){
+        return pointRepository.getPointByGameIdOrOrderByRoundAndId(game);
     }
 }

@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Add player</title>
-    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
+    <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>
-    <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
-
-    <!--
-        <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
-    -->
+    <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet"/>
 
 </head>
 <body>
@@ -17,7 +13,7 @@
 
     <h2 th:text="'Nickname:'" class="textStyle"></h2>
     <input th:field="*{nickName}" onfocus="this.value=''" required><br>
-    <input type="button" value="Submit" class="button" onclick="submitForm()">
+    <input type="button" value="Submit" class="button_submit" onclick="submitForm()">
 </form>
 </body>
 </html>
