@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Number of players</title>
     <link href="../static/css/overall.css" th:href="@{/css/overall.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/homeJS.js}"></script>
 
 </head>
 <body>
@@ -12,7 +13,7 @@
 <h1 th:text="'Fill the form'" class="textStyle"></h1>
 <form method="post" th:object="${game}">
     <h2 th:text="'Number of players:'" class="textStyle"></h2>
-    <input th:field="*{numberOfPlayers}"><br>
+    <input type="number" min="1" th:field="*{numberOfPlayers}" placeholder="Min 1"><br>
     <input type="submit" value="Submit" class="buttonStyle">
 </form>
 

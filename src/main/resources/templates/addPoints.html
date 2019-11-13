@@ -22,7 +22,8 @@
 
     <form method="post" th:object="${point}" id="throw_form">
         <h2 th:text="'How much did you throw?'" class="textStyle"></h2>
-        <input th:field="*{throwValue}" id="d"><br><br>
+        <input type="number" min="0" max="60" th:field="*{throwValue}" id="d" placeholder="min 0, max 60">
+        <br><br>
 
         <input type="button" class="button" value="1" onclick='add(1)'>
         <input type="button" class="button" value="2" onclick='add(2)'>
@@ -57,7 +58,7 @@
         <input type="submit" value="Submit" class="button"><br>
     </form>
     <p th:text="'Left:'"></p>
-    <p th:if="${sum==null}" th:text="301"></p>
+    <p th:if="${sum==null and roundId == 1}" th:text="301"></p>
     <p th:text="${sum}"></p>
 </body>
 </html>

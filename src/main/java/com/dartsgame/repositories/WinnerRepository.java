@@ -11,7 +11,7 @@ import java.util.List;
 public interface WinnerRepository extends CrudRepository<Winner, Integer> {
 
 
-    List<Winner> findAllBy();
+    List<Winner> findAllByOrderByIdDesc();
 
     List<Winner> findTop1ByOrderByIdDesc();
 

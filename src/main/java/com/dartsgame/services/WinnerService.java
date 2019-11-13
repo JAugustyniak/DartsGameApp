@@ -18,8 +18,10 @@ public class WinnerService {
     }
 
     public List<Winner> getAllWinners(){
-        return winnerRepository.findAllBy();
+        return winnerRepository.findAllByOrderByIdDesc();
     }
+
+
 
     public List<Winner> getNumberOfLastWinners(Integer number){
         if(number==1){

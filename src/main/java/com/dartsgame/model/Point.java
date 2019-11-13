@@ -3,6 +3,8 @@ package com.dartsgame.model;
 import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity

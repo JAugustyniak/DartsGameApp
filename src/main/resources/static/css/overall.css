@@ -1,20 +1,15 @@
 body {
-    background-image: url("https://t4.ftcdn.net/jpg/02/93/68/11/240_F_293681146_KOtXttqymJ5wvGtr7O4BFexVwHK60ZMA.jpg");
-    /*background-image: url("https://img5.goodfon.com/wallpaper/nbig/3/a7/darts-metal-aiming.jpg");*/
+    /*
+    background-image: url("https://img2.goodfon.com/original/1600x1200/5/99/darts-drotik-cherno-belyy.jpg");
+    */
+    background-image: url("https://blog.playo.co/wp-content/uploads/2017/03/dart-board.jpg");
 
     /*
-        background-image: url("https://c4.wallpaperflare.com/wallpaper/350/690/357/black-and-white-board-bullseye-center-wallpaper-preview.jpg");
-        background-image: url("https://www.larutadelsorigens.cat/wallpic/full/147-1471483_dart-wallpaper-dart-board-backboard.jpg");
-        background-image: url("https://img4.goodfon.com/wallpaper/nbig/3/a7/darts-mishen-drotik-sektor-darts.jpg");
-        */
-    /*
-    filter: brightness(50%);
+    background-image: url("https://t4.ftcdn.net/jpg/02/93/68/11/240_F_293681146_KOtXttqymJ5wvGtr7O4BFexVwHK60ZMA.jpg");
     */
+
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-body {
     color: red;
     text-align: center;
 }
