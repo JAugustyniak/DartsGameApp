@@ -26,7 +26,7 @@
 <!--        </td>-->
         <td>
             <form th:action="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}">
-                <input type="submit" value="Show" class="submit_button">
+                <input type="submit" value="Show" class="button">
             </form>
         </td>
     </tr>
@@ -34,7 +34,7 @@
 </table>
 
 <form th:action="@{/listOfWinners}">
-    <input type="submit" value="Show All Winners" class="submit_button">
+    <input type="submit" value="Show All Winners" class="button">
 </form>
 </body>
 </html>

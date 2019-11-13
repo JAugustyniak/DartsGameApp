@@ -7,7 +7,9 @@
     <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
 </head>
 <body>
-
+<form th:action="@{/startGame}">
+    <input type="submit" value="Start new game" class="button">
+</form>
 <br><br><br><br><br><br><br><br><br><br><br>
 
 <h2 th:text="'END OF THE GAME'" class="textStyle"></h2>
@@ -16,8 +18,9 @@
 <br><br><br>
 
 <form th:action="@{/listOfWinners}">
-    <input type="submit" value="Show winners" class="submit_button">
+    <input type="submit" value="Show winners" class="button">
 </form>
+
 
 </body>
 </html>

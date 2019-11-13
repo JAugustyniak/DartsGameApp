@@ -7,6 +7,11 @@
     <link href="../static/css/buttons.css" th:href="@{/css/buttons.css}" rel="stylesheet" />
 </head>
 <body>
+
+<form th:action="@{/startGame}">
+    <input type="submit" value="Start new game" class="button">
+</form>
+
 <form method="post">
     Choose the number of recent winners:
     <select name="numberOfWinners">
@@ -15,7 +20,7 @@
         <option value="10">10</option>
         <option value="15">15</option>
     </select>
-    <input type="submit" value="Submit" class="submit_button">
+    <input type="submit" value="Submit" class="button">
 </form>
 
 <h1 th:text="'List of winners'" class="textStyle"></h1>
@@ -35,7 +40,7 @@
 <!--        </td>-->
         <td>
             <form th:action="@{'/showHistory/' + ${w.getPlayer().getGame().getId()}}">
-                <input type="submit" value="Show" class="submit_button">
+                <input type="submit" value="Show" class="button">
             </form>
         </td>
 
