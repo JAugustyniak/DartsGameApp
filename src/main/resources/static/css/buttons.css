@@ -14,7 +14,7 @@
 .button:hover {background-color: #ffcc5c;
     color: white;}
 
-.button_submit {
+.button_start{
     background-color: red;
     border: none;
     color: white;
@@ -25,17 +25,40 @@
     transition: 0.3s;
     width: 10%;
 }
+.button_start:hover{background-color: #ffcc5c;
+    color: white;
+}
+
+.button_submit {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 2px 10px;
+    text-align: center;
+    font-size: 12px;
+    margin: 4px 2px;
+    transition: 0.3s;
+    /*width: 10%;*/
+}
+
+.button_submit:hover{background-color: #ffcc5c;
+    color: white;}
 
 .button_little {
     background-color: red;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 10px 16px;
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     margin: 4px 2px;
-    transition: 0.3s;
-    width: 8%;
+    /*transition: 0.3s;*/
+    /*width: 8%;*/
+}
+
+.button_little:hover{background-color: #ffcc5c;
+    color: white;
+
 }
 
 #winnersHome{

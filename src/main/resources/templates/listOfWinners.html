@@ -9,7 +9,7 @@
 <body>
 
 <form th:action="@{/startGame}">
-    <input type="submit" value="Start new game" class="button_submit">
+    <input type="submit" value="Start new game" class="button_start">
 </form>
 
 <form method="post">
@@ -20,7 +20,7 @@
         <option value="10">10</option>
         <option value="15">15</option>
     </select>
-    <input type="submit" value="Submit" class="button">
+    <input type="submit" value="Submit" class="button_submit">
 </form>
 
 <h1 th:text="'List of winners'" class="textStyle"></h1>

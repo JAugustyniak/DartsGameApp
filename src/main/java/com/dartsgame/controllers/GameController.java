@@ -95,25 +95,28 @@ public class GameController {
         model.addAttribute("playerName", name);
         pointService.savePoint(point);
         int sum = 301 - pointService.getSumPoints(playerService.findPlayerById(playerId));
-
         List<Player> listOfPlayers = playerService.findAllByGame(g);
+
         if(0 > sum){
             point.setThrowValue(0);
             pointService.savePoint(point);
             numberOfThrows = 0;
             counterAddPoints += 1;
-            return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
+            if(listOfPlayers.size()==1){
+                return "redirect:/" + gameId + "/" + player.getId() + "/" + (roundId + 1);
+            }
+            else if(player == listOfPlayers.get(listOfPlayers.size()-1)){
+                counterAddPoints = 0;
+                return "redirect:/" + gameId + "/" + listOfPlayers.get(0).getId() + "/" + (roundId + 1);
+            }else {
+                return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
+            }
         }
 
         if (sum == 0) {
             model.addAttribute("roundId", roundId);
             model.addAttribute("player", player);
-            Winner winner = new Winner();
-            winner.setGame(g);
-            winner.setPlayer(player);
-            winner.setRound(roundId);
-            String winnerName = player.getNickName();
-            winner.setName(winnerName);
+            Winner winner = new Winner(player.getNickName(),g,player,roundId);
             winnerService.saveWinner(winner);
             return "win";
         }
@@ -123,8 +126,7 @@ public class GameController {
             return "addPoints";
         }
 
-
-        if (numberOfThrows >= 3) {
+        else  {
             numberOfThrows = 0;
             counterAddPoints += 1;
             if (counterAddPoints >= listOfPlayers.size()) {
@@ -134,7 +136,7 @@ public class GameController {
             }
             return "redirect:/" + gameId + "/" + listOfPlayers.get(counterAddPoints).getId() + "/" + roundId;
         }
-        return "abc";
+
     }
 
     @RequestMapping(value = "/listOfWinners", method = RequestMethod.GET)
