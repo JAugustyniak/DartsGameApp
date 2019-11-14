@@ -11,8 +11,8 @@ Java web application for a darts game system
 * [Bootstrap](https://getbootstrap.com/)
 
 ## Author
-Joanna Augustyniak  - [GitHub account](https://github.com/JAugustyniak) 
-Mikołaj Gronowski - [GitHub account] (https://github.com/MGroniu)
+* Joanna Augustyniak  - [GitHub account](https://github.com/JAugustyniak)
+* Mikołaj Gronowski - [GitHub account] (https://github.com/MGroniu)
 
 ## Description
 ....
