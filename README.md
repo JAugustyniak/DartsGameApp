@@ -20,6 +20,9 @@ Java web application for a darts game system
 Functionalities:
 
 * Selecting the number of players [gif]
+![](numberofplayers.gif)
+
+
 * Giving nicknames to players [gif]
 * Each player has three throws in a round [gif]
 * For a player to win it must reach 301 points [photo or win view gif]
