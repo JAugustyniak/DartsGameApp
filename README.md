@@ -13,7 +13,7 @@ Java web application for a darts game system
 
 ## Authors
 * Joanna Augustyniak  - [GitHub account](https://github.com/JAugustyniak)
-* Mikołaj Gronowski - [GitHub account] (https://github.com/MGroniu)
+* Mikołaj Gronowski - [GitHub account](https://github.com/MGroniu)
 
 ## Description
 ....
