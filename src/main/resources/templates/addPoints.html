@@ -9,14 +9,15 @@
 </head>
 <body>
 <br>
-<p th:text="'Player: '"></p>
+<h2>
+<p th:text="'Player Nickname'"></p>
 <p th:text="${playerName}"></p>
 <p th:text="'Number of round: '"></p>
 <p th:text="${point.getRound()}"></p>
 <p th:text="'Number of throw: '"></p>
 <p th:if="${throwNumber==null}" th:text="'1'"></p>
 <p th:text="${throwNumber}"></p>
-
+</h2>
 <form method="post" th:object="${point}" id="throw_form">
     <h2 th:text="'How much did you throw?'" class="textStyle"></h2>
     <input type="number" min="0" max="60" th:field="*{throwValue}" id="d" placeholder="min 0, max 60">
@@ -45,7 +46,7 @@
 
     <input type="button" value="2X" onclick='multi(2)' class="button">
     <input type="button" value="3X" onclick='multi(3)' class="button"><br>
-    <input type="submit" value="Submit" class="button_submit"><br>
+    <input type="submit" value="Submit" class="button_start"><br>
 </form>
 <h1>
     <p th:text="'Left:'"></p>
