@@ -27,6 +27,8 @@ Functionalities:
 ![](enternickname.gif)
 
 * Each player has three throws in a round [gif]
+![](addpoints.gif)
+
 * For a player to win it must reach 301 points [photo or win view gif]
 * If 301 points are passed by the player, the queue falls on the next player
 * The winners table shows all players' previous wins and the round in which they won. [photo or gif]
