@@ -8,7 +8,6 @@ Java web application for a darts game system
 * [Hibernate](https://hibernate.org/)
 * [JavaScript](https://www.javascript.com/)
 * [MySql](https://www.mysql.com/)
-* [Bootstrap](https://getbootstrap.com/)
 
 ## Authors
 * Joanna Augustyniak  - [GitHub account](https://github.com/JAugustyniak)
