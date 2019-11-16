@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService{
 
-    @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    public GameService(GameRepository gameRepository){
+        this.gameRepository = gameRepository;
+    }
 
     public void saveGame(Game game){
         gameRepository.save(game);

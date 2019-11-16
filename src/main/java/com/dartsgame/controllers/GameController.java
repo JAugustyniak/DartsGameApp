@@ -18,17 +18,18 @@ import java.util.List;
 @Controller
 public class GameController {
 
-    @Autowired
     GameService gameService;
-
-    @Autowired
     PlayerService playerService;
-
-    @Autowired
     PointService pointService;
+    WinnerService winnerService;
 
     @Autowired
-    WinnerService winnerService;
+    public GameController(GameService gameService, PlayerService playerService, PointService pointService, WinnerService winnerService){
+        this.gameService = gameService;
+        this.playerService = playerService;
+        this.pointService = pointService;
+        this.winnerService = winnerService;
+    }
 
     @RequestMapping(value = "startGame", method = RequestMethod.GET)
     public String startGame(Model model) {
@@ -102,7 +103,7 @@ public class GameController {
             pointService.savePoint(point);
             numberOfThrows = 0;
             counterAddPoints += 1;
-            if(listOfPlayers.size()==1){
+            if(listOfPlayers.size() == 1){
                 return "redirect:/" + gameId + "/" + player.getId() + "/" + (roundId + 1);
             }
             else if(player == listOfPlayers.get(listOfPlayers.size()-1)){

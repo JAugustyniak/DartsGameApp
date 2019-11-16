@@ -1,24 +1,19 @@
 package com.dartsgame.model;
 
-import org.springframework.data.relational.core.sql.In;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Point {
+public class Point implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @NotNull
     private Integer throwValue;
 
     private Integer throwNumber;
@@ -28,18 +23,18 @@ public class Point {
     public Point() {
     }
 
-    public Point(Player player, @NotNull Integer throwValue, Integer throwNumber, Integer round) {
+    public Point(Player player, Integer throwValue, Integer throwNumber, Integer round) {
         this.player = player;
         this.throwValue = throwValue;
         this.throwNumber = throwNumber;
         this.round = round;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

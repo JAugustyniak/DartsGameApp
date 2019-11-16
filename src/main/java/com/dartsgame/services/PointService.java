@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class PointService {
 
-    @Autowired
     PointRepository pointRepository;
+
+    @Autowired
+    public PointService(PointRepository pointRepository) {
+        this.pointRepository = pointRepository;
+    }
 
     public List<Point> findAllByPlayerId(Integer id){
         return pointRepository.findAllByPlayerId(id);

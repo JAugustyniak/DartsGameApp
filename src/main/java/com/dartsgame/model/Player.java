@@ -1,13 +1,14 @@
 package com.dartsgame.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Player {
+public class Player implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String nickName;
 
@@ -24,11 +25,11 @@ public class Player {
         this.game = game;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

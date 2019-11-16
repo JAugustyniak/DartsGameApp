@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class PlayerService {
 
-    @Autowired
     PlayerRepository playerRepository;
+
+    @Autowired
+    public PlayerService(PlayerRepository playerRepository){
+        this.playerRepository = playerRepository;
+    }
 
     public void savePlayer(Player player){
         playerRepository.save(player);

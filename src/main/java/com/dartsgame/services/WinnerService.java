@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class WinnerService {
 
-    @Autowired
     WinnerRepository winnerRepository;
+
+    @Autowired
+    public WinnerService(WinnerRepository winnerRepository) {
+        this.winnerRepository = winnerRepository;
+    }
 
     public void saveWinner(Winner winner){
         winnerRepository.save(winner);
